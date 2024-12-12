@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="https://github.com/llouzada/really-really-simple-phpdotenv/blob/main/assets/img/rrsdotenv-logo.webp" width=400">
+  <img src="https://github.com/llouzada/really-really-simple-phpdotenv/blob/main/assets/rrsdotenv-logo.webp" width=400">
 </div>
 
 # Really Really Simple PHP Dotenv
