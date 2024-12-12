@@ -16,3 +16,16 @@
     ]
   ```
 
+## Usage
+
+- Create a `.env` file in your project root and add your environment variables.
+- Use the `Dotenv` class to load the `.env` file and access the environment variables.
+  ```php
+  require_once APP_ROOT . '/vendor/autoload.php';
+
+  RRSDotenv::load(APP_ROOT);
+
+  echo getenv('APP_NAME');
+  ```
+
+
