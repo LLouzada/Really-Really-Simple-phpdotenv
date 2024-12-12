@@ -1,4 +1,11 @@
+<div align="center">
+  <img src="https://github.com/llouzada/really-really-simple-phpdotenv/blob/main/assets/img/rrsdotenv-logo.webp" width=400">
+</div>
+
 # Really Really Simple PHP Dotenv
+
+A simple dotenv loader that offers support for older versions of PHP (5.3+)
+
 
 ## Installation
 
