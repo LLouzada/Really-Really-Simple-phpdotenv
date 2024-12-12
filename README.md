@@ -2,5 +2,17 @@
 
 ## Installation
 
-- Download the repository [github.com/llouzada/really-really-simple-phpdotenv](https://github.com/llouzada/really-really-simple-phpdotenv)
-- Assuming you already have composer installed, run `composer config repositories.llouzada-really-really-simple-phpdotenv path path/to/really-really-simple-phpdotenv`
+- Assuming you have [Composer](https://getcomposer.org/) installed, just add the following to your `composer.json` file:
+  ```json
+  
+    "require": {
+        "llouzada/really-really-simple-phpdotenv": "^0.1.1"
+    },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/llouzada/really-really-simple-phpdotenv.git"
+        }
+    ]
+  ```
+
