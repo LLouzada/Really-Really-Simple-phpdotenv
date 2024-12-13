@@ -20,7 +20,7 @@ This package is a simple dotenv loader designed to support older PHP versions (5
    ```json
    {
        "require": {
-           "llouzada/really-really-simple-phpdotenv": "^0.1.1"
+           "llouzada/really-really-simple-phpdotenv": "^0.2.0"
        },
        "repositories": [
            {
@@ -57,6 +57,11 @@ This package is licensed under the [MIT License](https://mit-license.org/). See 
 If you need support or have any questions, please open an issue on the GitHub repository or contact me directly at loumad.soft@gmail.com. Contributions are also welcome! Feel free to submit pull requests (PRs) to improve or enhance the project.
 
 ## Changelog
+
+### 0.2.0
+
+- Added more validation checks for the `.env` file. 
+- Improved security and error handling.
 
 ### 0.1.1
   
