@@ -6,21 +6,31 @@ class RRSDotenv
 {
     public static function load($filePath)
     {
-        // File validation
-        $dotenvPath = $filePath . '/.env';
-        if (!file_exists($dotenvPath)) {
+        $dotenvPath = rtrim($filePath, '/') . '/.env';
+        if (!is_file($dotenvPath) || !is_readable($dotenvPath)) {
             return;
         }
 
-        $lines = file($dotenvPath, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+        // Verify file permissions (must be <= 0644)
+        $permissions = substr(sprintf('%o', fileperms($dotenvPath)), -4);
+        if (octdec($permissions) > octdec('0644')) {
+            throw new \RuntimeException("The .env file permissions must be <= 0644. Current permissions: $permissions");
+        }
 
-        foreach ($lines as $line) {
-            // Ignore comments
-            if (strpos(trim($line), '#') === 0) {
+        $handle = fopen($dotenvPath, 'r');
+        if (!$handle) {
+            return;
+        }
+
+        while (($line = fgets($handle)) !== false) {
+            $line = trim($line);
+
+            // Ignorare empty lines and comments
+            if ($line === '' || $line[0] === '#') {
                 continue;
             }
 
-            // Split the line into key and value
+            // Verify key=value format
             $parts = explode('=', $line, 2);
             if (count($parts) !== 2) {
                 continue;
@@ -29,19 +39,26 @@ class RRSDotenv
             $key = trim($parts[0]);
             $value = trim($parts[1]);
 
-            // Remove surrounding quotes
-            if (preg_match('/^"(.*)"$/', $value, $matches)) {
-                $value = $matches[1];
-            } elseif (preg_match("/^'(.*)'$/", $value, $matches)) {
-                $value = $matches[1];
+            // Validate key format
+            if (!preg_match('/^[A-Z0-9_]+$/i', $key)) {
+                throw new \RuntimeException("Invalid key format in .env file: $key");
             }
 
-            // Set the environment variables
-            if (!array_key_exists($key, $_ENV) && !array_key_exists($key, $_SERVER)) {
-                putenv("$key=$value");
+            // Remove doubles quotes or single quotes
+            if ((substr($value, 0, 1) === '"' && substr($value, -1) === '"') ||
+                (substr($value, 0, 1) === "'" && substr($value, -1) === "'")
+            ) {
+                $value = substr($value, 1, -1);
+            }
+
+            // Set environment variables
+            if (!isset($_ENV[$key]) && !isset($_SERVER[$key])) {
+                putenv($key . '=' . $value);
                 $_ENV[$key] = $value;
                 $_SERVER[$key] = $value;
             }
         }
+
+        fclose($handle);
     }
 }
