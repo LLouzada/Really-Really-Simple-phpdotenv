@@ -59,6 +59,7 @@ If you need support or have any questions, please open an issue on the GitHub re
 ## Next Steps
 
 - [ ] Cache
+- [ ] Publish to [packagist](https://packagist.org/) 
 
 ## Changelog
 
