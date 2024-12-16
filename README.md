@@ -56,6 +56,10 @@ This package is licensed under the [MIT License](https://mit-license.org/). See 
 
 If you need support or have any questions, please open an issue on the GitHub repository or contact me directly at loumad.soft@gmail.com. Contributions are also welcome! Feel free to submit pull requests (PRs) to improve or enhance the project.
 
+## Next Steps
+
+- [ ] Cache
+
 ## Changelog
 
 ### 0.2.0
